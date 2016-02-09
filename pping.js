@@ -1,16 +1,16 @@
 var Device = require('zetta-device');
 var util = require('util');
 
-var Starter = module.exports = function(options) {
+var PPing = module.exports = function(options) {
   Device.call(this);
   this._default = options['default'];
 };
-util.inherits(Starter, Device);
+util.inherits(PPing, Device);
 
-Starter.prototype.init = function(config) {
+PPing.prototype.init = function(config) {
   config
-  .name('Starter')
-  .type('starter')
+  .name('PPing')
+  .type('pping')
   .state('waiting')
   .when('waiting', { allow: ['do']})
   .when('doing', { allow: [] })
@@ -19,7 +19,7 @@ Starter.prototype.init = function(config) {
   ]);
 };
 
-Starter.prototype.do = function(message, cb) {
+PPing.prototype.do = function(message, cb) {
   this.state = 'doing';
   this.log(this._default + ': ' + message);
   this.state = 'waiting';

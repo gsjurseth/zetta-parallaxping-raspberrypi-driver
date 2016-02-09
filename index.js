@@ -1,6 +1,6 @@
 var Scout = require('zetta-scout');
 var util = require('util');
-var Starter = require('./starter');
+var PPing = require('./pping');
 
 var StarterScout = module.exports = function() {
   Scout.call(this);
@@ -11,14 +11,14 @@ StarterScout.prototype.init = function(next) {
 
   var self = this;
 
-  var query = this.server.where({type: 'starter'});
+  var query = this.server.where({type: 'pping'});
   var options = {default: 'DEFAULT'};
 
   this.server.find(query, function(err, results) {
     if (results[0]) {
-      self.provision(results[0], Starter, options);
+      self.provision(results[0], PPing, options);
     } else {
-      self.discover(Starter, options);
+      self.discover(PPing, options);
     }
   });
 
